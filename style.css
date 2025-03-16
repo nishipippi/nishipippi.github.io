@@ -1,0 +1,101 @@
+/* 基本設定 */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333; /* 基本の文字色 */
+    background-color: #fef0fb; /* メインカラー1 */
+    position: relative; /* 天の川背景のため */
+    overflow-x: hidden; /* 横スクロール防止 */
+}
+
+/* 天の川背景 (CSSで作成) */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%; /* 横幅を広めにとる */
+    height: 100%;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    z-index: -1; /* コンテンツの後ろに配置 */
+    animation: rotate 100s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23fff'/%3E%3C/svg%3E"),
+                     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='25' cy='75' r='0.8' fill='%23fff'/%3E%3C/svg%3E"),
+                     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='75' cy='25' r='0.5' fill='%23fff'/%3E%3C/svg%3E");
+
+    background-size: 100px 100px;
+    opacity: 0.6; /* 星の透明度 */
+    z-index: -1;
+}
+
+/* ヘッダー */
+header {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #dde8fc; /* メインカラー2 */
+    color: #333;
+}
+
+header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+/* メインコンテンツ */
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 2em;
+    border-bottom: 2px solid #dde8fc;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    color: #333;
+}
+ul {
+  list-style: none; /* リストマークを消す */
+  padding: 0;
+}
+/* フッター */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #dde8fc;
+    color: #333;
+}
+a{
+   color: #333;
+}
+
+/* レスポンシブ対応 (必要に応じて) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5em;
+    }
+}
