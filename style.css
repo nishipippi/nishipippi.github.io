@@ -1,101 +1,81 @@
-/* 基本設定 */
+/* 基本スタイル */
 body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
-    color: #333; /* 基本の文字色 */
-    background-color: #fef0fb; /* メインカラー1 */
-    position: relative; /* 天の川背景のため */
-    overflow-x: hidden; /* 横スクロール防止 */
+    background-color: #FEF0FB; /* メインカラー1 */
+    color: #333;
+    display: flex; /* 全体を中央揃えにするための準備 */
+    justify-content: center; /* 水平方向に中央揃え */
+    align-items: center; /* 垂直方向に中央揃え */
+    min-height: 100vh; /* 画面の高さいっぱいに表示 */
+
 }
 
-/* 天の川背景 (CSSで作成) */
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px; /* 最大幅を設定 */
+    position: relative; /* 天の川の背景を相対配置にする */
+    z-index: 1;     /* 天の川より手前に表示 */
+
+}
+
+h1, h2, p {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+a {
+    color: #DDE8FC; /* メインカラー2 */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 天の川の背景 */
 body::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%; /* 横幅を広めにとる */
-    height: 100%;
-    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-    z-index: -1; /* コンテンツの後ろに配置 */
-    animation: rotate 100s linear infinite;
-}
-
-@keyframes rotate {
-  from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-}
-
-body::after {
-    content: '';
-    position: absolute;
+    position: fixed; /* 固定配置 */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='1' fill='%23fff'/%3E%3C/svg%3E"),
-                     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='25' cy='75' r='0.8' fill='%23fff'/%3E%3C/svg%3E"),
-                     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='75' cy='25' r='0.5' fill='%23fff'/%3E%3C/svg%3E");
+    background: radial-gradient(ellipse at bottom, #1c2a4f 0%, #04081a 100%); /* 暗めのグラデーション */
+    z-index: 0; /* .container の背面に配置 */
 
-    background-size: 100px 100px;
-    opacity: 0.6; /* 星の透明度 */
-    z-index: -1;
-}
+    /* 星の追加 */
+    background-image:
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #fff 1px, transparent 1px);
+    background-size: 100px 100px, 75px 75px, 50px 50px;
+    background-position: 0 0, 25px 50px, 10px 80px;
+    animation: move-stars 200s linear infinite; /*アニメーション*/
 
-/* ヘッダー */
-header {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: #dde8fc; /* メインカラー2 */
-    color: #333;
 }
 
-header h1 {
-    font-size: 3em;
-    margin-bottom: 10px;
+@keyframes move-stars {
+    from {
+        background-position: 0 0, 25px 50px, 10px 80px;
+    }
+    to {
+        background-position: -1000px 0, -975px 50px, -990px 80px;
+    }
 }
 
-/* メインコンテンツ */
-main {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-section {
-    margin-bottom: 40px;
-}
-
-h2 {
-    font-size: 2em;
-    border-bottom: 2px solid #dde8fc;
-    padding-bottom: 5px;
-    margin-bottom: 20px;
-    color: #333;
-}
-ul {
-  list-style: none; /* リストマークを消す */
-  padding: 0;
-}
-/* フッター */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #dde8fc;
-    color: #333;
-}
-a{
-   color: #333;
-}
-
-/* レスポンシブ対応 (必要に応じて) */
+/* レスポンシブ対応（画面幅が狭い場合） */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2.5em;
+    .container {
+        width: 95%;
     }
 }
