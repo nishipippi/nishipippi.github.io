@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自己紹介サイト</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS */
+        body {
+            background-color: #DDE8FC;
+            color: black;
+            font-family: 'Kaisei Decol', serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            max-width: 800px; /* 最大幅を設定 */
+            margin: 0 auto; /* 中央揃え */
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            color: #333; /* 見出しの色 */
+        }
+
+        h2 {
+            border-bottom: 2px solid #FEF0FB; /* 下線 */
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        .profile-image {
+            display: block;
+            margin: 0 auto 20px; /* 中央揃え、下マージン */
+            border-radius: 50%; /* 円形 */
+            width: 150px; /* 幅 */
+            height: 150px; /* 高さ */
+            object-fit: cover; /* 画像のトリミング */
+            border: 3px solid #FEF0FB;
+        }
+
+        .introduction {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .skills ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* 中央揃え */
+        }
+
+        .skills li {
+            background-color: #FEF0FB;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        .portfolio-item {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .portfolio-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .contact {
+            text-align: center;
+        }
+         .contact ul{
+           list-style: none;
+         }
+
+        /* 追加セクションのスタイル */
+        .interests ul, .motivation ul {
+            list-style: none;
+            padding: 0;
+        }
+        .interests li, .motivation li{
+          margin:5px 0;
+        }
+
+        .education table, .experience table, .achievements table, .ta-experience table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .education th, .education td, .experience th, .experience td, .achievements th, .achievements td,.ta-experience th,.ta-experience td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .education th, .experience th, .achievements th,.ta-experience th {
+            background-color: #f2f2f2;
+        }
+
+        /* 天の川のスタイル (変更なし) */
+        #milkyway {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #FEF0FB;
+            border-radius: 50%;
+            animation: twinkle infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        @keyframes move {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(100vh) translateX(100vw); }
+        }
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+          .skills ul {
+            flex-direction: column; /*縦並び*/
+            align-items: center;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div id="milkyway"></div>
+
+    <div class="container">
+        <!-- 導入部分 -->
+        <section class="introduction">
+          <img src="your-profile-image.jpg" alt="プロフィール画像" class="profile-image">
+          <h1>Sosuke Nishimura</h1>
+          <p>Symbio and Computer Science</p>
+        </section>
+
+        <!-- 自己紹介 -->
+        <section>
+            <h2>自己紹介</h2>
+            <p>現在早稲田大学で合成生物学研究室に所属しています。遺伝子工学・タンパク質工学に興味があります。</p>
+        </section>
+
+        <!-- スキル -->
+        <section class="skills">
+            <h2>スキル</h2>
+            <ul>
+                <li>合成生物学</li>
+                <li>Python</li>
+                <li>アントレプレナーシップ</li>
+
+            </ul>
+        </section>
+
+
+       <!-- ★★★ 追加ここから ★★★ -->
+
+        <!-- 興味範囲 -->
+        <section class="interests">
+            <h2>興味範囲</h2>
+            <ul>
+                <li>合成生物学</li>
+                <li>コンピューター</li>
+                <li>技術シーズの社会実装</li>
+            </ul>
+        </section>
+
+        <!-- モチベーション -->
+        <section class="motivation">
+            <h2>モチベーション</h2>
+            <ul>
+                <li>コンピューター</li>
+                <li>幼い頃から機械仕掛けのものに強い興味があり、中学生の頃からはPCの自作に没頭していました。
+                    秋葉原に通い詰めてパーツを吟味し、組み立てマニュアルを読み解きながら、初めて自分の手でPCを組み上げた時の感動は今でも忘れられません。
+                    ケース内部に次々とパーツを配置し、それぞれに配線、そして電源を入れた瞬間に起動するBIOS画面を見たとき、
+                    メカニカルな美しさと、自分の手で機械を作り上げるクリエイティブな喜びに心を奪われました。それはまるで、
+                    デジタル回路が複雑に組み合わさって一つのシステムとして機能する様子を目の当たりにしたような感覚でした。
+                    その後も、PCのパーツを交換してデジタルな世界に深く没入する学生時代でした。</li>
+                <li>タンパク質工学</li>
+                <li>高校の生物の授業で、ATP合成酵素が細胞内でエネルギー通貨であるATPを生成する様子を映像で見たとき、衝撃を受けました。
+                    高速回転する分子モーターのような構造、そしてそれが生命活動の根源的なエネルギーを生み出しているという事実に、言葉にできないほどの感動を覚えました。
+                    それまで機械といえば無機質なものだと考えていましたが、有機的な生物の作り出す分子機械、
+                    まさにタンパク質が生み出す精緻なナノマシンが生み出すエネルギー変換の生化学的なプロセスに、そして生命システム全体の巧妙さに、圧倒されました。</li>
+                
+                
+            </ul>
+        </section>
+
+        <!-- 学歴 -->
+        <section class="education">
+            <h2>学歴</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>期間</th>
+                        <th>学校名</th>
+                        <th>学部/学科</th>
+                        <th>学位/専攻</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2025年4月 - 現在</td>
+                        <td>早稲田大学大学院</td>
+                        <td>先進理工学研究科 電気・情報生命専攻</td>
+                        <td>修士 (工学)</td>
+                    </tr>
+                    <tr>
+                        <td>2021年4月 - 2025年3月</td>
+                        <td>早稲田大学</td>
+                        <td>先進理工学部 電気・情報生命工学科</td>
+                        <td>学士 (工学)</td>
+                    </tr>
+                    <tr>
+                      <td>2018年4月 - 2021年3月</td>
+                      <td>海城高等学校</td>
+                      <td>普通科</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                        <td>2015年4月 - 2018年3月</td>
+                        <td>海城中学校</td>
+                        <td>普通科</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 職歴 -->
+        <section class="experience">
+            <h2>職歴</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>期間</th>
+                        <th>会社名</th>
+                        <th>役職</th>
+                        <th>業務内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2025年2月 - 現在</td>
+                        <td>Smart Ecosystem Philippines, Inc.</td>
+                        <td>請負労働者</td>
+                        <td>AIモデルの改善を目的としたトレーニング</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>2022年1月 - 2022年4月</td>
+                        <td>株式会社トライグループ</td>
+                        <td>アルバイト</td>
+                        <td>オンラインでの高校数学指導</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 実績 -->
+        <section class="achievements">
+            <h2>実績</h2>
+            <table>
+              <thead>
+                <tr>
+                    <th>年</th>
+                    <th>実績</th>
+                    <th>詳細</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2024年8月</td>
+                  <td>Synbio Challenges 2024 Gold Medal</td>
+                  <td>中国で開催された合成生物学の国際的コンテストにおいて、タンパク質活性推定部門で金賞を受賞</td>
+                </tr>
+                <tr>
+                  <td>2023年2月</td>
+                  <td>JstarXでの米西海岸派遣</td>
+                  <td>JETRO主催の起業前マインドセットプログラムに採択され、米西海岸でスタートアップエコシステムを視察</td>
+                </tr>
+              </tbody>
+            </table>
+        </section>
+
+        <!-- ティーチングアシスタントの経験 -->
+        <section class="ta-experience">
+            <h2>ティーチングアシスタントの経験</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>期間</th>
+                        <th>科目名</th>
+                        <th>担当内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024年9月-2025年2月</td>
+                        <td>生化学</td>
+                        <td>授業補佐</td>
+                    </tr>
+                    <tr>
+                        <td>2024年7月</td>
+                        <td>プロジェクト研究A</td>
+                        <td>講師・カリキュラム編集</td>
+                    </tr>
+                    <tr>
+                        <td>2024年4月-2024年7月</td>
+                        <td>合成生物学</td>
+                        <td>授業補佐</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    <!-- ★★★ 追加ここまで ★★★ -->
+
+        <!-- ポートフォリオ -->
+        <section class="portfolio">
+            <h2>ポートフォリオ</h2>
+            <div class="portfolio-item">
+                <img src="portfolio-image1.jpg" alt="ポートフォリオ1">
+                <h3>プロジェクト名1</h3>
+                <p>プロジェクトの簡単な説明</p>
+                <a href="project-link1">詳細を見る</a>
+            </div>
+
+            <div class="portfolio-item">
+                <img src="portfolio-image2.jpg" alt="ポートフォリオ2">
+                <h3>プロジェクト名2</h3>
+                <p>プロジェクトの簡単な説明</p>
+                <a href="project-link2">詳細を見る</a>
+            </div>
+        </section>
+
+        <!-- 連絡先 -->
+        <section class="contact">
+            <h2>連絡先</h2>
+            <ul>
+              <li><a href="mailto:your-email@example.com">メール</a></li>
+              <li><a href="https://twitter.com/your-twitter">Twitter</a></li>
+              <li><a href="https://github.com/your-github">GitHub</a></li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+      // JavaScript (変更なし)
+      const milkyway = document.getElementById('milkyway');
+      const starCount = 300;
+
+      function createStar() {
+          const star = document.createElement('div');
+          star.classList.add('star');
+          const size = Math.random() * 8 + 2;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+          star.style.animationDuration = `${Math.random() * 3 + 1}s, ${Math.random() * 10 + 5}s`;
+          star.style.animationName = `twinkle, move`;
+          star.style.animationTimingFunction = 'linear, ease-out';
+          star.style.animationDelay = `0s, -${Math.random() * 10}s`;
+          milkyway.appendChild(star);
+      }
+
+      for (let i = 0; i < starCount; i++) {
+          createStar();
+      }
+
+      milkyway.addEventListener('animationiteration', (event) => {
+          if (event.animationName === 'move') {
+              const star = event.target;
+              star.style.left = `${Math.random() * 100}%`;
+              star.style.top = `${Math.random() * 100}%`;
+              star.style.animationDelay = `0s, -${Math.random() * 10}s`;
+          }
+      });
+    </script>
+</body>
+</html>
