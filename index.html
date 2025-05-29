@@ -3,403 +3,532 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自己紹介サイト</title>
+    <title>nishipippi - ポートフォリオ</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* CSS */
+        :root {
+            --light-pink: #ffcce6;
+            --light-blue: #b3e0ff;
+            --star-color: #ffde59;
+        }
+        
         body {
-            background-color: #DDE8FC;
-            color: black;
-            font-family: 'Kaisei Decol', serif;
-            margin: 0;
+            font-family: 'M PLUS Rounded 1c', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--light-blue) 100%);
+            min-height: 100vh;
+            position: relative;
             overflow-x: hidden;
         }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            padding: 20px;
-            max-width: 800px; /* 最大幅を設定 */
-            margin: 0 auto; /* 中央揃え */
-        }
-
-        h1, h2, h3 {
-            text-align: center;
-            color: #333; /* 見出しの色 */
-        }
-
-        h2 {
-            border-bottom: 2px solid #FEF0FB; /* 下線 */
-            padding-bottom: 5px;
-            margin-top: 30px;
-        }
-
-        .profile-image {
-            display: block;
-            margin: 0 auto 20px; /* 中央揃え、下マージン */
-            border-radius: 50%; /* 円形 */
-            width: 150px; /* 幅 */
-            height: 150px; /* 高さ */
-            object-fit: cover; /* 画像のトリミング */
-            border: 3px solid #FEF0FB;
-        }
-
-        .introduction {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .skills ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center; /* 中央揃え */
-        }
-
-        .skills li {
-            background-color: #FEF0FB;
-            padding: 5px 10px;
-            margin: 5px;
-            border-radius: 5px;
-        }
-
-        .portfolio-item {
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .portfolio-item img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        .contact {
-            text-align: center;
-        }
-         .contact ul{
-           list-style: none;
-         }
-
-        /* 追加セクションのスタイル */
-        .interests ul, .motivation ul {
-            list-style: none;
-            padding: 0;
-        }
-        .interests li, .motivation li{
-          margin:5px 0;
-        }
-
-        .education table, .experience table, .achievements table, .ta-experience table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        .education th, .education td, .experience th, .experience td, .achievements th, .achievements td,.ta-experience th,.ta-experience td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        .education th, .experience th, .achievements th,.ta-experience th {
-            background-color: #f2f2f2;
-        }
-
-        /* 天の川のスタイル (変更なし) */
-        #milkyway {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            overflow: hidden;
-        }
-
+        
         .star {
             position: absolute;
-            background-color: #FEF0FB;
-            border-radius: 50%;
-            animation: twinkle infinite;
+            opacity: 0.7;
+            animation: twinkle 3s infinite ease-in-out;
+            z-index: 0;
         }
-
+        
         @keyframes twinkle {
-            0%, 100% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 0.2; transform: scale(0.8); }
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 0.9; transform: scale(1.1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+        
+        .profile-container {
+            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            z-index: 10;
+            position: relative;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--light-pink), var(--light-blue));
+            border-radius: 2px;
+        }
+        
+        .skill-badge {
+            background: linear-gradient(135deg, var(--light-pink), var(--light-blue));
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--light-pink), var(--light-blue));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 100%;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .contact-button {
+            background: linear-gradient(135deg, var(--light-pink), var(--light-blue));
+            transition: all 0.3s ease;
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        @keyframes move {
-            0% { transform: translateY(0) translateX(0); }
-            100% { transform: translateY(100vh) translateX(100vw); }
+        /* テーブルの基本スタイル */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
         }
-        /* レスポンシブ対応 */
-        @media (max-width: 768px) {
-          .skills ul {
-            flex-direction: column; /*縦並び*/
-            align-items: center;
-          }
+        th, td {
+            border: 1px solid #e2e8f0; /* Tailwindのgray-200 */
+            padding: 0.75rem; /* Tailwindのp-3 */
+            text-align: left;
+        }
+        th {
+            background-color: #f8fafc; /* Tailwindのgray-50 */
+            font-weight: 600; /* Tailwindのfont-semibold */
         }
     </style>
 </head>
-<body>
-    <div id="milkyway"></div>
+<body class="min-h-screen relative overflow-x-hidden">
+    <div id="stars-container" class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <!-- 星はJSでここに生成 -->
+    </div>
 
-    <div class="container">
-        <!-- 導入部分 -->
-        <section class="introduction">
-          <img src="your-profile-image.jpg" alt="プロフィール画像" class="profile-image">
-          <h1>Sosuke Nishimura</h1>
-          <p>Symbio and Computer Science</p>
-        </section>
-
-        <!-- 自己紹介 -->
-        <section>
-            <h2>自己紹介</h2>
-            <p>現在早稲田大学で合成生物学研究室に所属しています。遺伝子工学・タンパク質工学に興味があります。</p>
-        </section>
-
-        <!-- スキル -->
-        <section class="skills">
-            <h2>スキル</h2>
-            <ul>
-                <li>合成生物学</li>
-                <li>Python</li>
-                <li>アントレプレナーシップ</li>
-
-            </ul>
-        </section>
-
-
-       <!-- ★★★ 追加ここから ★★★ -->
-
-        <!-- 興味範囲 -->
-        <section class="interests">
-            <h2>興味範囲</h2>
-            <ul>
-                <li>合成生物学</li>
-                <li>コンピューター</li>
-                <li>技術シーズの社会実装</li>
-            </ul>
-        </section>
-
-        <!-- モチベーション -->
-        <section class="motivation">
-            <h2>モチベーション</h2>
-            <ul>
-                <li>コンピューター</li>
-                <li>幼い頃から機械仕掛けのものに強い興味があり、中学生の頃からはPCの自作に没頭していました。
-                    秋葉原に通い詰めてパーツを吟味し、組み立てマニュアルを読み解きながら、初めて自分の手でPCを組み上げた時の感動は今でも忘れられません。
-                    ケース内部に次々とパーツを配置し、それぞれに配線、そして電源を入れた瞬間に起動するBIOS画面を見たとき、
-                    メカニカルな美しさと、自分の手で機械を作り上げるクリエイティブな喜びに心を奪われました。それはまるで、
-                    デジタル回路が複雑に組み合わさって一つのシステムとして機能する様子を目の当たりにしたような感覚でした。
-                    その後も、PCのパーツを交換してデジタルな世界に深く没入する学生時代でした。</li>
-                <li>タンパク質工学</li>
-                <li>高校の生物の授業で、ATP合成酵素が細胞内でエネルギー通貨であるATPを生成する様子を映像で見たとき、衝撃を受けました。
-                    高速回転する分子モーターのような構造、そしてそれが生命活動の根源的なエネルギーを生み出しているという事実に、言葉にできないほどの感動を覚えました。
-                    それまで機械といえば無機質なものだと考えていましたが、有機的な生物の作り出す分子機械、
-                    まさにタンパク質が生み出す精緻なナノマシンが生み出すエネルギー変換の生化学的なプロセスに、そして生命システム全体の巧妙さに、圧倒されました。</li>
-                
-                
-            </ul>
-        </section>
-
-        <!-- 学歴 -->
-        <section class="education">
-            <h2>学歴</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>期間</th>
-                        <th>学校名</th>
-                        <th>学部/学科</th>
-                        <th>学位/専攻</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2025年4月 - 現在</td>
-                        <td>早稲田大学大学院</td>
-                        <td>先進理工学研究科 電気・情報生命専攻</td>
-                        <td>修士 (工学)</td>
-                    </tr>
-                    <tr>
-                        <td>2021年4月 - 2025年3月</td>
-                        <td>早稲田大学</td>
-                        <td>先進理工学部 電気・情報生命工学科</td>
-                        <td>学士 (工学)</td>
-                    </tr>
-                    <tr>
-                      <td>2018年4月 - 2021年3月</td>
-                      <td>海城高等学校</td>
-                      <td>普通科</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                        <td>2015年4月 - 2018年3月</td>
-                        <td>海城中学校</td>
-                        <td>普通科</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- 職歴 -->
-        <section class="experience">
-            <h2>職歴</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>期間</th>
-                        <th>会社名</th>
-                        <th>役職</th>
-                        <th>業務内容</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2025年2月 - 現在</td>
-                        <td>Smart Ecosystem Philippines, Inc.</td>
-                        <td>請負労働者</td>
-                        <td>AIモデルの改善を目的としたトレーニング</td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>2022年1月 - 2022年4月</td>
-                        <td>株式会社トライグループ</td>
-                        <td>アルバイト</td>
-                        <td>オンラインでの高校数学指導</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- 実績 -->
-        <section class="achievements">
-            <h2>実績</h2>
-            <table>
-              <thead>
-                <tr>
-                    <th>年</th>
-                    <th>実績</th>
-                    <th>詳細</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>2024年8月</td>
-                  <td>Synbio Challenges 2024 Gold Medal</td>
-                  <td>中国で開催された合成生物学の国際的コンテストにおいて、タンパク質活性推定部門で金賞を受賞</td>
-                </tr>
-                <tr>
-                  <td>2023年2月</td>
-                  <td>JstarXでの米西海岸派遣</td>
-                  <td>JETRO主催の起業前マインドセットプログラムに採択され、米西海岸でスタートアップエコシステムを視察</td>
-                </tr>
-              </tbody>
-            </table>
-        </section>
-
-        <!-- ティーチングアシスタントの経験 -->
-        <section class="ta-experience">
-            <h2>ティーチングアシスタントの経験</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>期間</th>
-                        <th>科目名</th>
-                        <th>担当内容</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2024年9月-2025年2月</td>
-                        <td>生化学</td>
-                        <td>授業補佐</td>
-                    </tr>
-                    <tr>
-                        <td>2024年7月</td>
-                        <td>プロジェクト研究A</td>
-                        <td>講師・カリキュラム編集</td>
-                    </tr>
-                    <tr>
-                        <td>2024年4月-2024年7月</td>
-                        <td>合成生物学</td>
-                        <td>授業補佐</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    <!-- ★★★ 追加ここまで ★★★ -->
-
-        <!-- ポートフォリオ -->
-        <section class="portfolio">
-            <h2>ポートフォリオ</h2>
-            <div class="portfolio-item">
-                <img src="portfolio-image1.jpg" alt="ポートフォリオ1">
-                <h3>プロジェクト名1</h3>
-                <p>プロジェクトの簡単な説明</p>
-                <a href="project-link1">詳細を見る</a>
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto profile-container p-6 md:p-8">
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row items-center justify-between mb-8">
+            <div class="flex items-center mb-4 md:mb-0">
+                <div class="w-24 h-24 rounded-full overflow-hidden bg-gradient-to-r from-pink-200 to-blue-200 flex items-center justify-center">
+                    <img src="your-profile-image.jpg" alt="プロフィール画像" class="w-full h-full object-cover">
+                </div>
+                <div class="ml-4">
+                    <h1 class="text-2xl md:text-3xl font-bold"> nishipippi</h1>
+                    <p class="text-gray-600">Symbio and Computer Science</p>
+                </div>
             </div>
-
-            <div class="portfolio-item">
-                <img src="portfolio-image2.jpg" alt="ポートフォリオ2">
-                <h3>プロジェクト名2</h3>
-                <p>プロジェクトの簡単な説明</p>
-                <a href="project-link2">詳細を見る</a>
+            <div class="flex space-x-3">
+                <a href="https://github.com/nishipippi" class="p-2 rounded-full bg-pink-100 hover:bg-pink-200 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-pink-500" viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                </a>
+                <a href="mailto:yuripippi2411@gmail.com" class="p-2 rounded-full bg-blue-100 hover:bg-blue-200 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-blue-700" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                </a>
             </div>
-        </section>
-
-        <!-- 連絡先 -->
-        <section class="contact">
-            <h2>連絡先</h2>
-            <ul>
-              <li><a href="mailto:your-email@example.com">メール</a></li>
-              <li><a href="https://twitter.com/your-twitter">Twitter</a></li>
-              <li><a href="https://github.com/your-github">GitHub</a></li>
+        </header>
+        
+        <!-- Navigation -->
+        <nav class="mb-8">
+            <ul class="flex flex-wrap border-b border-gray-200">
+                <li class="mr-2">
+                    <a href="#about" class="nav-link active inline-block py-2 px-4 text-gray-600 font-medium" data-tab="about">自己紹介</a>
+                </li>
+                <li class="mr-2">
+                    <a href="#skills" class="nav-link inline-block py-2 px-4 text-gray-600 font-medium" data-tab="skills">スキル</a>
+                </li>
+                <li class="mr-2">
+                    <a href="#resume" class="nav-link inline-block py-2 px-4 text-gray-600 font-medium" data-tab="resume">経歴</a>
+                </li>
+                <li class="mr-2">
+                    <a href="#projects" class="nav-link inline-block py-2 px-4 text-gray-600 font-medium" data-tab="projects">プロジェクト</a>
+                </li>
             </ul>
-        </section>
+        </nav>
+        
+        <!-- Tab Content -->
+        <div class="tab-content active" id="about">
+            <h2 class="section-title text-xl font-bold">自己紹介</h2>
+            <div class="space-y-4">
+                <p>現在早稲田大学で合成生物学研究室に所属しています。遺伝子工学・タンパク質工学に興味があります。</p>
+                <div class="bg-white bg-opacity-50 p-4 rounded-lg">
+                    <h3 class="font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">興味範囲</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>合成生物学</li>
+                        <li>コンピューター</li>
+                        <li>技術シーズの社会実装</li>
+                    </ul>
+                </div>
+                <div class="bg-white bg-opacity-50 p-4 rounded-lg mt-4">
+                    <h3 class="font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">モチベーション</h3>
+                    <div class="space-y-3 text-gray-700 leading-relaxed">
+                        <p>私が「コンピューターなどのシステム」の面白さに目覚めた原体験の一つは、中学生時代のPC自作です。当時、秋葉原でパーツを選び、マニュアルを頼りに手探りで組み上げていく過程は、知的な探求心を刺激するものでした。初めて自分の手で組み立てたPCが起動した瞬間の達成感は、今でも鮮明に覚えています。個々の部品が連携し、一つのシステムとして機能する様は、まさに創造の喜びそのものでした。この経験が、複雑なものを理解し、自ら作り上げることへの興味を深める大きなきっかけとなりました。</p>
+                        <p>もう一つの重要な転機は、高校の生物の授業でATP合成酵素の映像に触れたことです。細胞内でエネルギーを生み出す分子モーターとも言えるタンパク質の精巧な働きは、私にとって大きな驚きでした。それまで機械という言葉から連想される無機的なイメージとは異なり、生命が内包するナノスケールの「機械」が持つ機能美と、そのシステム全体の巧妙さに強く心を惹かれました。この二つの経験が交差し、現在の私の探求心へと繋がっています。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="skills">
+            <h2 class="section-title text-xl font-bold">スキル</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">プログラミング言語</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">JavaScript (TypeScript)</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">Python</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">HTML/CSS</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">フレームワーク・ライブラリ・ツール</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">Next.js</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">React</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">Node.js</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">scikit-learn</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">Git</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">pnpm</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">Vercel</span>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">API連携・データ処理・その他</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">API設計・利用 (REST)</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">Google Gemini API</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">arXiv API</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">データ解析 (XML)</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">数式レンダリング (KaTeX)</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">機械学習</span>
+                        <span class="skill-badge px-3 py-1 rounded-full text-white">バイオインフォマティクス</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="resume">
+            <h2 class="section-title text-xl font-bold">経歴</h2>
+            <div class="space-y-6">
+                <!-- 学歴 -->
+                <div class="bg-white bg-opacity-50 p-4 rounded-lg shadow-md">
+                    <h3 class="font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">学歴</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+                            <thead class="bg-gradient-to-r from-pink-200 to-blue-200 text-gray-800">
+                                <tr>
+                                    <th class="p-3 text-left">期間</th>
+                                    <th class="p-3 text-left">学校名</th>
+                                    <th class="p-3 text-left">学部/学科</th>
+                                    <th class="p-3 text-left">学位/専攻</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-3 border-t border-gray-200">2025年4月 - 現在</td>
+                                    <td class="p-3 border-t border-gray-200">早稲田大学大学院</td>
+                                    <td class="p-3 border-t border-gray-200">先進理工学研究科 電気・情報生命専攻</td>
+                                    <td class="p-3 border-t border-gray-200">修士 (工学)</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border-t border-gray-200">2021年4月 - 2025年3月</td>
+                                    <td class="p-3 border-t border-gray-200">早稲田大学</td>
+                                    <td class="p-3 border-t border-gray-200">先進理工学部 電気・情報生命工学科</td>
+                                    <td class="p-3 border-t border-gray-200">学士 (工学)</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border-t border-gray-200">2018年4月 - 2021年3月</td>
+                                    <td class="p-3 border-t border-gray-200">海城高等学校</td>
+                                    <td class="p-3 border-t border-gray-200">普通科</td>
+                                    <td class="p-3 border-t border-gray-200"></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border-t border-gray-200">2015年4月 - 2018年3月</td>
+                                    <td class="p-3 border-t border-gray-200">海城中学校</td>
+                                    <td class="p-3 border-t border-gray-200">普通科</td>
+                                    <td class="p-3 border-t border-gray-200"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- 職歴 -->
+                <div class="bg-white bg-opacity-50 p-4 rounded-lg shadow-md">
+                    <h3 class="font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">職歴</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+                            <thead class="bg-gradient-to-r from-pink-200 to-blue-200 text-gray-800">
+                                <tr>
+                                    <th class="p-3 text-left">期間</th>
+                                    <th class="p-3 text-left">会社名</th>
+                                    <th class="p-3 text-left">役職</th>
+                                    <th class="p-3 text-left">業務内容</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-3 border-t border-gray-200">2025年2月 - 現在</td>
+                                    <td class="p-3 border-t border-gray-200">Smart Ecosystem Philippines, Inc.</td>
+                                    <td class="p-3 border-t border-gray-200">請負労働者</td>
+                                    <td class="p-3 border-t border-gray-200">AIモデルの改善を目的としたトレーニング</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border-t border-gray-200">2022年1月 - 2022年4月</td>
+                                    <td class="p-3 border-t border-gray-200">株式会社トライグループ</td>
+                                    <td class="p-3 border-t border-gray-200">アルバイト</td>
+                                    <td class="p-3 border-t border-gray-200">オンラインでの高校数学指導</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- 実績 -->
+                <div class="bg-white bg-opacity-50 p-4 rounded-lg shadow-md">
+                    <h3 class="font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">実績</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+                            <thead class="bg-gradient-to-r from-pink-200 to-blue-200 text-gray-800">
+                                <tr>
+                                    <th class="p-3 text-left">年</th>
+                                    <th class="p-3 text-left">実績</th>
+                                    <th class="p-3 text-left">詳細</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-3 border-t border-gray-200">2024年8月</td>
+                                    <td class="p-3 border-t border-gray-200">Synbio Challenges 2024 Gold Medal</td>
+                                    <td class="p-3 border-t border-gray-200">中国で開催された合成生物学の国際的コンテストにおいて、タンパク質活性推定部門で金賞を受賞</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border-t border-gray-200">2023年2月</td>
+                                    <td class="p-3 border-t border-gray-200">JstarXでの米西海岸派遣</td>
+                                    <td class="p-3 border-t border-gray-200">JETRO主催の起業前マインドセットプログラムに採択され、米西海岸でスタートアップエコシステムを視察</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- ティーチングアシスタントの経験 -->
+                <div class="bg-white bg-opacity-50 p-4 rounded-lg shadow-md">
+                    <h3 class="font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">ティーチングアシスタントの経験</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+                            <thead class="bg-gradient-to-r from-pink-200 to-blue-200 text-gray-800">
+                                <tr>
+                                    <th class="p-3 text-left">期間</th>
+                                    <th class="p-3 text-left">科目名</th>
+                                    <th class="p-3 text-left">担当内容</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="p-3 border-t border-gray-200">2024年9月-2025年2月</td>
+                                    <td class="p-3 border-t border-gray-200">生化学</td>
+                                    <td class="p-3 border-t border-gray-200">授業補佐</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border-t border-gray-200">2024年7月</td>
+                                    <td class="p-3 border-t border-gray-200">プロジェクト研究A</td>
+                                    <td class="p-3 border-t border-gray-200">講師・カリキュラム編集</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 border-t border-gray-200">2024年4月-2024年7月</td>
+                                    <td class="p-3 border-t border-gray-200">合成生物学</td>
+                                    <td class="p-3 border-t border-gray-200">授業補佐</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="projects">
+            <h2 class="section-title text-xl font-bold">プロジェクト</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Project 1: KigaIrs -->
+                <div class="bg-white bg-opacity-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-40 bg-gradient-to-r from-pink-300 to-blue-300 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">KigaIrs: 論文スワイプアプリ</h3>
+                        <p class="text-gray-600 mb-3 text-sm">arXivの論文をスワイプ操作で直感的に閲覧・評価できるWebアプリ。AIによる日本語要約機能付き。</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex flex-wrap gap-1">
+                                <span class="bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded">Next.js</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">React</span>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">TypeScript</span>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Gemini API</span>
+                                <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Vercel</span>
+                            </div>
+                            <a href="https://kiga-ers-web.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline text-sm">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: Synbio2024 -->
+                <div class="bg-white bg-opacity-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    <div class="h-40 bg-gradient-to-r from-blue-300 to-pink-300 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                        </svg>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">Synbio2024 変異体活性予測ツール群</h3>
+                        <p class="text-gray-600 mb-3 text-sm">合成生物学コンペティションで使用した、アミノ酸変異体の活性を機械学習で予測・評価するための一連のPythonスクリプト。</p>
+                        <div class="flex justify-between items-center">
+                            <div class="flex flex-wrap gap-1">
+                                <span class="bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded">Python</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">scikit-learn</span>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">機械学習</span>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">バイオインフォマティクス</span>
+                            </div>
+                            <a href="https://github.com/nishipippi/Synbio2024_WasedaTeam" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline text-sm">詳細を見る</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="mt-12 pt-6 border-t border-gray-200 text-center text-gray-600 text-sm">
+            <p>© 2025  nishipippi - All Rights Reserved</p>
+            <p class="mt-1">Made with ✨ and inspired by Blue Archive's Uzawa Reisa</p>
+        </footer>
     </div>
 
     <script>
-      // JavaScript (変更なし)
-      const milkyway = document.getElementById('milkyway');
-      const starCount = 300;
-
-      function createStar() {
-          const star = document.createElement('div');
-          star.classList.add('star');
-          const size = Math.random() * 8 + 2;
-          star.style.width = `${size}px`;
-          star.style.height = `${size}px`;
-          star.style.left = `${Math.random() * 100}%`;
-          star.style.top = `${Math.random() * 100}%`;
-          star.style.animationDuration = `${Math.random() * 3 + 1}s, ${Math.random() * 10 + 5}s`;
-          star.style.animationName = `twinkle, move`;
-          star.style.animationTimingFunction = 'linear, ease-out';
-          star.style.animationDelay = `0s, -${Math.random() * 10}s`;
-          milkyway.appendChild(star);
-      }
-
-      for (let i = 0; i < starCount; i++) {
-          createStar();
-      }
-
-      milkyway.addEventListener('animationiteration', (event) => {
-          if (event.animationName === 'move') {
-              const star = event.target;
-              star.style.left = `${Math.random() * 100}%`;
-              star.style.top = `${Math.random() * 100}%`;
-              star.style.animationDelay = `0s, -${Math.random() * 10}s`;
-          }
-      });
+        // Create stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars-container');
+            const starCount = 50;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random star size
+                const size = Math.random() * 15 + 5;
+                
+                // Create SVG star
+                star.innerHTML = `
+                    <svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="#ffde59">
+                        <path d="M12 0L15.09 8.91L24 12L15.09 15.09L12 24L8.91 15.09L0 12L8.91 8.91L12 0Z" />
+                    </svg>
+                `;
+                
+                // Random position
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                
+                star.style.left = `${left}%`;
+                star.style.top = `${top}%`;
+                
+                // Random animation delay
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        // Tab navigation
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.nav-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+        
+        // Contact form handling (demo only)
+        function setupContactForm() {
+            const contactButton = document.querySelector('.contact-button');
+            
+            contactButton.addEventListener('click', () => {
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                if (name && email && message) {
+                    alert('お問い合わせありがとうございます！\n実際のフォームではここでメッセージが送信されます。');
+                    document.getElementById('name').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('message').value = '';
+                } else {
+                    alert('すべての項目を入力してください。');
+                }
+            });
+        }
+        
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            setupTabs();
+            setupContactForm();
+        });
     </script>
 </body>
 </html>
